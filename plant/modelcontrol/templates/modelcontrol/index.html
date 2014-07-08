@@ -1,0 +1,15 @@
+{% if servo_list %}
+    <ul>
+    {% for servo in servo_list %}
+        <form action="{% url 'modelcontrol:update' servo.id %}" method="post">
+        {% csrf_token %}
+        <li>
+        Servo {{ servo.id }} Position: {{servo.position}} <input name="position" value="{{ servo.id }}">
+        <input type="submit" value="Set" />
+        </li>
+        </form>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No servos are available.</p>
+{% endif %}
