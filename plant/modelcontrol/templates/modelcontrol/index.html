@@ -1,15 +1,22 @@
-{% if servo_list %}
+{% if plant_list %}
     <ul>
-    {% for servo in servo_list %}
-        <form action="{% url 'modelcontrol:update' servo.id %}" method="post">
+    {% for plant in plant_list %}
+        <form action="/modelcontrol/{{ plant.servo.id }}/update/" method="post">
         {% csrf_token %}
         <li>
-        Servo {{ servo.id }} Position: {{servo.position}} <input name="position" value="{{ servo.id }}">
+        Servo {{ plant.servo.id }} Position: {{plant.servo.position}} <input name="position" value="{{ plant.servo.id }}">
+        <input type="submit" value="Set" />
+        </li>
+        </form>
+        <form action="/modelcontrol/{{ plant.motor.id }}/update/" method="post">
+        {% csrf_token %}
+        <li>
+        Motor {{ plant.motor.id }} Speed: {{plant.motor.speed}} <input name="speed" value="{{ plant.motor.id }}">
         <input type="submit" value="Set" />
         </li>
         </form>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No servos are available.</p>
+    <p>No plants are available.</p>
 {% endif %}

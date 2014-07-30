@@ -6,5 +6,5 @@ from modelcontrol import views
 
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<servo_id>\d+)/update/$', views.update, name='update'),
+    url(r'^(?P<plant_id>\d+)/update/$', views.update, name='update'),
 )
